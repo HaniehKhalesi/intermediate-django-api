@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'profiles_api'
 ]
 
 MIDDLEWARE = [
@@ -84,10 +85,9 @@ DATABASES = {
    'default': {
        'ENGINE': 'django.db.backends.postgresql',
        'NAME': 'Blog_api_intermediate',
-       'USER': 'hanieh',
-       'PASSWORD': '<password>',
-       'HOST': '<database_hostname_or_ip>',
-       'PORT': '<database_port>',
+       'USER': 'postgres',
+       'PASSWORD': 'hanieh123',
+       'PORT': 5432
    }
 }
 
@@ -132,3 +132,5 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+AUTH_USER_MODEL = 'profiles_api.UserProfile'
