@@ -37,7 +37,11 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    'profiles_api'
+    # install package
+    'rest_framework',
+
+    # append module
+    'profiles_api',
 ]
 
 MIDDLEWARE = [
