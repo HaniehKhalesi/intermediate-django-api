@@ -2,6 +2,8 @@ from django.shortcuts import render
 from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.viewsets import ViewSet
+
 from .serializers import HelloSerializer
 from rest_framework import status
 
@@ -41,6 +43,49 @@ class HelloAPIView(APIView):
     def delete(self, request, pk=None):
         """Handel a delete of an object"""
         return Response({"methode": "delete"})
+
+
+# Create ViewSet
+class TestAPIViewSet(ViewSet):
+    """ Test for viewSet"""
+    serializer_class = HelloSerializer
+
+    def list(self, request):
+        """ list in ViewSet equals get result Function """
+        as_viewSet = [
+            'message 1',
+            'message 2',
+            'message 3',
+            'message 4',
+        ]
+        message = "this is list function "
+        return Response({'message': message, 'as_view': as_viewSet})
+
+    def create(self, request):
+        """ create in ViewSet equals post in api view """
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            name = serializer.validated_data.get('name')
+            message = f'Hello {name}'
+            return Response({'message': message})
+        else:
+            return Response({'detail': 'this input is not valid'}, status=status.HTTP_400_BAD_REQUEST)
+
+    def retrieve(self, request, pk=None):
+        """ get a detail item """
+        return Response({'http_method': 'GET'})
+
+    def update(self, request, pk=None):
+        """ update a detail item """
+        return Response({'http_method': 'PUT'})
+
+    def partial_update(self, request, pk=None):
+        """ partial update a detail item """
+        return Response({'http_method': 'PATCH'})
+
+    def destroy(self, request, pk=None):
+        """ delete a detail item """
+        return Response({'http_method': 'DELETE'})
 
 
 
