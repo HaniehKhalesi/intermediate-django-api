@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rest_framework import generics
+from rest_framework import generics, filters
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ViewSet, ModelViewSet
@@ -98,5 +98,6 @@ class UserProfileViewSet(ModelViewSet):
     authentication_classes = (TokenAuthentication,)
     # Each user can only update her/his own profile
     permission_classes = (permissions.UpdateOneProfile,)
-
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ('name', 'email')
 
