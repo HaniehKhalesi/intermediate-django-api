@@ -2,9 +2,9 @@ from django.shortcuts import render
 from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.viewsets import ViewSet
-
-from .serializers import HelloSerializer
+from rest_framework.viewsets import ViewSet, ModelViewSet
+from .models import UserProfile
+from .serializers import HelloSerializer, UserProfileSerializer
 from rest_framework import status
 
 
@@ -86,6 +86,12 @@ class TestAPIViewSet(ViewSet):
     def destroy(self, request, pk=None):
         """ delete a detail item """
         return Response({'http_method': 'DELETE'})
+
+
+# create user profile API
+class UserProfileViewSet(ModelViewSet):
+    serializer_class = UserProfileSerializer
+    queryset = UserProfile.object.all()
 
 
 
