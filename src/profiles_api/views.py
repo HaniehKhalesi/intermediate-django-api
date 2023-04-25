@@ -90,6 +90,7 @@ class TestAPIViewSet(ViewSet):
         return Response({'http_method': 'DELETE'})
 
 
+
 # create user profile API
 class UserProfileViewSet(ModelViewSet):
     """ create update get put delete for profile user """
