@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from rest_framework import generics, filters
+from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.response import Response
+from rest_framework.settings import api_settings
 from rest_framework.views import APIView
 from rest_framework.viewsets import ViewSet, ModelViewSet
 from .models import UserProfile
@@ -90,7 +92,6 @@ class TestAPIViewSet(ViewSet):
         return Response({'http_method': 'DELETE'})
 
 
-
 # create user profile API
 class UserProfileViewSet(ModelViewSet):
     """ create update get put delete for profile user """
@@ -101,4 +102,11 @@ class UserProfileViewSet(ModelViewSet):
     permission_classes = (permissions.UpdateOneProfile,)
     filter_backends = (filters.SearchFilter,)
     search_fields = ('name', 'email')
+
+
+# Login API
+class UserLoginAPIView(ObtainAuthToken):
+    """Handel Create user authentication token"""
+    renderer_classes = api_settings.DEFAULT_RENDERER_CLASSES
+
 
