@@ -1,12 +1,13 @@
 from django.shortcuts import render
 from rest_framework import generics, filters
 from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.settings import api_settings
 from rest_framework.views import APIView
 from rest_framework.viewsets import ViewSet, ModelViewSet
-from .models import UserProfile
-from .serializers import HelloSerializer, UserProfileSerializer
+from .models import UserProfile, profileFeedItems
+from .serializers import HelloSerializer, UserProfileSerializer, profileFeedItemsSerializer
 from rest_framework import status
 from rest_framework.authentication import TokenAuthentication
 from . import permissions
@@ -109,4 +110,17 @@ class UserLoginAPIView(ObtainAuthToken):
     """Handel Create user authentication token"""
     renderer_classes = api_settings.DEFAULT_RENDERER_CLASSES
 
+
+class UserProfileFreedItemView(ModelViewSet):
+    """view for show text status and edit by only user create"""
+    serializer_class = profileFeedItemsSerializer
+    queryset = profileFeedItems.objects.all()
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (
+        permissions.profileFreeItem_permissions,
+        IsAuthenticated,
+    )
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
 
