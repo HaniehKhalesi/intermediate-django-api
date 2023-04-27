@@ -42,9 +42,9 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
         """update to get full users name"""
         return self.name
 
-    def get_short_name(self):
-        """update to get short users name"""
-        return self.name
+    def get_email(self):
+        """update to get email"""
+        return self.email
 
     def __str__(self):
         return self.email
@@ -54,6 +54,9 @@ class profileFeedItems(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     text_status = models.CharField(max_length=200)
     date_create = models.DateTimeField(auto_now_add=True)
+
+    def get_text_status(self):
+        return f"{self.user.name} {self.text_status}"
 
     def __str__(self):
         return self.text_status
