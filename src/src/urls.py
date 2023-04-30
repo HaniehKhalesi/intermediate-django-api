@@ -47,6 +47,4 @@ urlpatterns = [
 
     path("", include("profiles_api.ulrs")),
     path('api-auth/', include('rest_framework.urls')),
-
-
 ]
