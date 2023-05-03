@@ -17,7 +17,7 @@ class User_profile_manager(BaseUserManager):
         user.save(using=self.db)
         return user
 
-    def create_superuser(self, email,name, password):
+    def create_superuser(self, email, name, password):
         """ create and saved new superuser with given detail"""
         user = self.create_user(email, name, password)
         user.is_superuser = True
@@ -46,7 +46,7 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
         """update to get email"""
         return self.email
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.email
 
 
@@ -66,4 +66,3 @@ class profileFeedItems(models.Model):
 # def create_auth_token(sender, instance=None, created=False, **kwargs):
 #     if created:
 #         Token.objects.create(user=instance)
-
