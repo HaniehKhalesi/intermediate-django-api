@@ -42,6 +42,9 @@ class TestViewsUserProfile(TestCase):
         self.assertEqual(response.data, serializer.data)
 
     def test_create_user_profile(self):
+
+
+
         user = self.user_test
         payload = {
             'email': 'test_create@test2.com',
