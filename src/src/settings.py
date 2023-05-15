@@ -38,14 +38,13 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # install package
-    'rest_framework',
-    'rest_framework.authtoken',
-    'rest_framework_swagger',
-    'drf_yasg',
-    'drf_spectacular',
+    "rest_framework",
+    "rest_framework.authtoken",
+    "rest_framework_swagger",
+    "drf_yasg",
+    "drf_spectacular",
     # append module
-    'profiles_api',
-
+    "profiles_api",
 ]
 
 MIDDLEWARE = [
@@ -90,13 +89,13 @@ WSGI_APPLICATION = "src.wsgi.application"
 # }
 
 DATABASES = {
-   'default': {
-       'ENGINE': 'django.db.backends.postgresql',
-       'NAME': 'Blog_api_intermediate',
-       'USER': 'postgres',
-       'PASSWORD': 'hanieh123',
-       'PORT': 5432
-   }
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "Blog_api_intermediate",
+        "USER": "postgres",
+        "PASSWORD": "hanieh123",
+        "PORT": 5432,
+    }
 }
 
 
@@ -141,7 +140,7 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-AUTH_USER_MODEL = 'profiles_api.UserProfile'
+AUTH_USER_MODEL = "profiles_api.UserProfile"
 
 
 # REST_FRAMEWORK = {
@@ -157,10 +156,10 @@ AUTH_USER_MODEL = 'profiles_api.UserProfile'
 
 REST_FRAMEWORK = {
     # YOUR SETTINGS
-    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 
 
 SPECTACULAR_SETTINGS = {
-    'COMPONENT_SPLIT_REQUEST': True,
+    "COMPONENT_SPLIT_REQUEST": True,
 }

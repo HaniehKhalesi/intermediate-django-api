@@ -7,7 +7,6 @@ import django.db.models.manager
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [

@@ -2,15 +2,13 @@ from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.contrib.auth.base_user import BaseUserManager
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
 
 
 class User_profile_manager(BaseUserManager):
     def create_user(self, email, name, password=None):
         if not email:
-            raise ValueError('this file is required')
+            raise ValueError("this file is required")
 
         email = self.normalize_email(email)
         user = self.model(email=email, name=name)
@@ -19,7 +17,7 @@ class User_profile_manager(BaseUserManager):
         return user
 
     def create_superuser(self, email, name, password):
-        """ create and saved new superuser with given detail"""
+        """create and saved new superuser with given detail"""
         user = self.create_user(email, name, password)
         user.is_superuser = True
         user.is_staff = True
@@ -29,6 +27,7 @@ class User_profile_manager(BaseUserManager):
 
 class UserProfile(AbstractBaseUser, PermissionsMixin):
     """Resents a UserProfile  inside our system"""
+
     email = models.EmailField(max_length=300, unique=True)
     name = models.CharField(max_length=300)
     is_active = models.BooleanField(default=True)
@@ -36,8 +35,8 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
 
     object = User_profile_manager()
 
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['name']
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = ["name"]
 
     def get_full_name(self):
         """update to get full users name"""
@@ -61,6 +60,7 @@ class profileFeedItems(models.Model):
 
     def __str__(self):
         return self.text_status
+
 
 # # This code is triggered whenever a new user has been created and saved to the database
 # @receiver(post_save, sender=settings.AUTH_USER_MODEL)
