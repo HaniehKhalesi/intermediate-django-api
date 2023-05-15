@@ -1,5 +1,6 @@
 from django.urls import path, include
-from .views import HelloAPIView, TestAPIViewSet, UserProfileViewSet, UserLoginAPIView, UserProfileFreedItemView
+from .views import HelloAPIView, TestAPIViewSet, UserProfileViewSet, UserLoginAPIView, UserProfileFreedItemView, \
+    CreateUserView, CreateTokenView
 from rest_framework import routers
 
 app_name = 'profile'
@@ -12,5 +13,7 @@ urlpatterns = [
     path('test_api_view/', HelloAPIView.as_view(), name='test_api_view'),
     path('', include(router.urls)),
     path('login/', UserLoginAPIView.as_view()),
+    path('create/', CreateUserView.as_view(), name='create'),
+    path('token/', CreateTokenView.as_view(), name='token'),
 ]
 

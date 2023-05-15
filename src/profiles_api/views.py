@@ -1,4 +1,4 @@
-from rest_framework import filters
+from rest_framework import filters, generics
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -6,7 +6,7 @@ from rest_framework.settings import api_settings
 from rest_framework.views import APIView
 from rest_framework.viewsets import ViewSet, ModelViewSet
 from .models import UserProfile, profileFeedItems
-from .serializers import HelloSerializer, UserProfileSerializer, profileFeedItemsSerializer
+from .serializers import HelloSerializer, UserProfileSerializer, profileFeedItemsSerializer, UserSerializers, AthTokenSerializer
 from rest_framework import status
 from rest_framework.authentication import TokenAuthentication
 from . import permissions
@@ -122,4 +122,13 @@ class UserProfileFreedItemView(ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+
+class CreateUserView(generics.CreateAPIView):
+    serializer_class = UserSerializers
+
+
+class CreateTokenView(ObtainAuthToken):
+    serializer_class = AthTokenSerializer
+    renderer_classes = api_settings.DEFAULT_RENDERER_CLASSES
 
