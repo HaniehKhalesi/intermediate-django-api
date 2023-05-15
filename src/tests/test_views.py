@@ -1,7 +1,6 @@
 from django.test import TestCase, Client
 from django.urls import reverse
 from rest_framework import status
-
 from profiles_api.models import profileFeedItems, UserProfile
 from profiles_api.serializers import UserProfileSerializer
 
@@ -42,9 +41,6 @@ class TestViewsUserProfile(TestCase):
         self.assertEqual(response.data, serializer.data)
 
     def test_create_user_profile(self):
-
-
-
         user = self.user_test
         payload = {
             'email': 'test_create@test2.com',
