@@ -30,6 +30,7 @@ class ProfileFeedItemsTest(TestCase):
             email="admin1@admin.com", name="sara", is_staff=True
         )
 
+
         profileFeedItems.objects.create(user=user, text_status="Hi i am Jalil")
         profileFeedItems.objects.create(user=admin, text_status="Hi i am sara")
 
